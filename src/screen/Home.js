@@ -9,14 +9,22 @@ import {
   StatusBar,
   ImageEditor,
   Button,
+  ImageStore,
+  Platform,
+  Image,
+  Dimensions,
 } from 'react-native';
 import firebase from 'react-native-firebase';
 import {upsert} from '../api';
 import ImagePicker from 'react-native-image-crop-picker';
-import AmazingCropper from 'react-native-amazing-cropper';
+import AmazingCropper, {DefaultFooter} from 'react-native-amazing-cropper';
 import {recognizeText} from '../api/ml.js';
+
+const win = Dimensions.get('window');
+
 const Home: () => React$Node = () => {
-  const [image, setImage] = useState({});
+  const [image, setImage] = useState('');
+  const [cropperMode, setCropperMode] = useState(false);
   // useEffect(async () => {
   //   const currentUser = firebase.auth().currentUser;
   //
@@ -51,6 +59,20 @@ const Home: () => React$Node = () => {
   //   }
   // }, [image]);
   // const {displayName, email} = firebase.auth()?.currentUser;
+
+  const onDone = croppedImageUri => {
+    ImageStore.getBase64ForTag(croppedImageUri, base64Image => {
+      // send image to server
+      setImage(croppedImageUri);
+      setCropperMode(false);
+    });
+  };
+
+  if (cropperMode) {
+    return (
+      <AmazingCropper imageUri={image} imageWidth={1600} imageHeight={2300} />
+    );
+  }
   return (
     <>
       <Text>HOME </Text>
@@ -74,18 +96,13 @@ const Home: () => React$Node = () => {
             const result = await recognizeText(image?.path);
             console.log('result', result);
 
-            setImage(photo);
+            setImage(photo.path);
           });
         }}
       />
-      {image?.path && (
-        <AmazingCropper
-          imageUri={image?.path}
-          imageWidth={1600}
-          imageHeight={2396}
-          NOT_SELECTED_AREA_OPACITY={0.3}
-          BORDER_WIDTH={20}
-        />
+      <Button title={'cropp'} onPress={() => setCropperMode(true)} />
+      {image != '' && (
+        <Image style={{width: win.width, resizeMode: 'cover'}} src={image} />
       )}
     </>
   );
