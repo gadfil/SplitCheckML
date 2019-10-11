@@ -44,6 +44,8 @@ target 'SplitCheckML' do
   pod 'RNImageCropPicker', :path =>  '../node_modules/react-native-image-crop-picker'
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
+  pod 'RNTextDetector', path: '../node_modules/react-native-text-detector/ios'
+
 #  pod 'RNFirebase', :path => '../node_modules/react-native-firebase/ios'
 
   pod 'RNImageRotate', :path => '../node_modules/react-native-image-rotate'

@@ -14,7 +14,7 @@ import {createStackNavigator} from 'react-navigation-stack';
 import Home from './src/screen/Home';
 import Camera from './src/screen/Camera';
 import SignedIn from './src/screen/auth/SignedIn';
-import SignedUp from './src/screen/auth/SignedUp';
+import ForgotPassword from './src/screen/auth/ForgotPassword';
 import AuthLoading from './src/screen/auth/AuthLoading';
 import Frends from './src/screen/Frends';
 import History from './src/screen/History';
@@ -22,6 +22,7 @@ import Check from './src/screen/Check';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {Provider as PaperProvider} from 'react-native-paper';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import CropScreen from './src/screen/CropScreen';
 
 Icon.loadFont('AntDesign.ttf');
 Icon.loadFont('Entypo.ttf');
@@ -41,29 +42,58 @@ Icon.loadFont('Zocial.ttf');
 
 const AuthStack = createStackNavigator({
   SignedIn,
-  ForgotPassword: SignedUp,
+  ForgotPassword: ForgotPassword,
 });
 
 const TabNavigator = createBottomTabNavigator({
   Frends: {
     screen: Frends,
     navigationOptions: {
+      title: '',
+
       tabBarIcon: ({tintColor}) => (
-        <Icon name="users" size={25} color={tintColor} />
+        <Icon
+          name="users"
+          size={25}
+          style={{paddingTop: 8}}
+          color={tintColor}
+        />
       ),
     },
   },
   Check: {
     screen: Check,
     navigationOptions: {
+      title: '',
       tabBarIcon: ({tintColor}) => (
-        <FontAwesome5 name="receipt" size={25} color={tintColor} />
+        <FontAwesome5
+          name="receipt"
+          style={{paddingTop: 8}}
+          size={25}
+          color={tintColor}
+        />
+      ),
+    },
+  },
+  Wallet: {
+    screen: Check,
+    navigationOptions: {
+      title: '',
+
+      tabBarIcon: ({tintColor}) => (
+        <FontAwesome5
+          name="wallet"
+          style={{paddingTop: 8}}
+          size={25}
+          color={tintColor}
+        />
       ),
     },
   },
 });
 const AppStack = createStackNavigator({
   History: {screen: History},
+  CropScreen: {screen: CropScreen},
   Check: {screen: TabNavigator},
 });
 
@@ -93,6 +123,7 @@ export default createAppContainer(
       App: AppStack,
       Auth: AuthStack,
       Main: TabNavigator,
+      // Main: TabNavigator,
     },
     {initialRouteName: 'AuthLoading'},
   ),

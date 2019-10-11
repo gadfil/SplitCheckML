@@ -4,6 +4,8 @@ export default {
   },
   loginScreenContainer: {
     flex: 1,
+    paddingLeft: 15,
+    paddingRight: 15,
   },
   logoText: {
     fontSize: 40,
@@ -23,8 +25,8 @@ export default {
     borderColor: '#eaeaea',
     backgroundColor: '#fafafa',
     paddingLeft: 10,
-    marginLeft: 15,
-    marginRight: 15,
+    // marginLeft: 15,
+    // marginRight: 15,
     marginTop: 5,
     marginBottom: 5,
   },

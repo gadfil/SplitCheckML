@@ -7,7 +7,6 @@ const AuthLoading: () => React$Node = props => {
   useEffect(() => {
     console.log('AuthLoading:useEffect');
     firebase.auth().onAuthStateChanged(user => {
-      console.log(user);
       props.navigation.navigate(user ? 'App' : 'Auth');
     });
   }, []);

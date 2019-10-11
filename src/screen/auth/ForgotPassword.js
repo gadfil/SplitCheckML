@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {
   Keyboard,
-  Button,
   Text,
   View,
   TextInput,
@@ -13,15 +12,19 @@ import styles from './style';
 
 import firebase from 'react-native-firebase';
 import {validateEmail} from '../../util';
+import {Button} from 'react-native-paper';
 
-const SignUp: () => React$Node = props => {
+const ForgotPassword: () => React$Node = props => {
   const [email, setEmail] = useState('');
+  const [isFetch, setFetch] = useState(false);
   const forget = async () => {
     try {
+      setFetch(true);
       const response = await firebase.auth().sendPasswordResetEmail(email);
-      if (response) {
-        Alert.alert('Please check your email');
-      }
+      setFetch(false);
+
+      Alert.alert('Please check your email');
+      props.navigation.goBack();
     } catch (err) {
       Alert.alert(err.message);
     }
@@ -44,15 +47,16 @@ const SignUp: () => React$Node = props => {
               buttonStyle={styles.authButton}
               disabled={!validateEmail(email)}
               onPress={() => forget()}
-              title="Forget Password"
-            />
+              loading={isFetch}>
+              Forget Password
+            </Button>
           </View>
         </View>
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
   );
 };
-SignUp.navigationOptions = {
+ForgotPassword.navigationOptions = {
   title: 'Forget Password',
 };
-export default SignUp;
+export default ForgotPassword;

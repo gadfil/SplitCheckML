@@ -1,19 +1,21 @@
 import React, {useState} from 'react';
 import {
   Keyboard,
-  Button,
   Text,
   View,
   TextInput,
   TouchableWithoutFeedback,
   Alert,
   KeyboardAvoidingView,
+  ActivityIndicator,
 } from 'react-native';
 import styles from './style';
 
 import firebase from 'react-native-firebase';
 import {validateEmail} from '../../util';
 import {AccessToken, LoginManager} from 'react-native-fbsdk';
+import {Button} from 'react-native-paper';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const SignIn: () => React$Node = props => {
   const [password, setPassword] = useState('');
@@ -102,32 +104,38 @@ const SignIn: () => React$Node = props => {
               onChangeText={text => setPassword(text)}
               secureTextEntry={true}
             />
-            <Button
-              buttonStyle={styles.authButton}
-              disabled={
-                !(password && password.length > 3) || !validateEmail(email)
-              }
-              onPress={() => login()}
-              title="Login"
-            />
-            <Button
-              buttonStyle={styles.fbAuthButton}
-              onPress={() => facebookLogin()}
-              title="Login with Facebook"
-              color="#3897f1"
-            />
-            <Button
-              buttonStyle={styles.fbAuthButton}
-              onPress={() => register()}
-              title="SignUp"
-              color="#3897f1"
-            />
+            <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+              <Button
+                buttonStyle={styles.authButton}
+                disabled={
+                  !(password && password.length > 3) || !validateEmail(email)
+                }
+                onPress={() => login()}>
+                Login
+              </Button>
+
+              <Button
+                buttonStyle={styles.fbAuthButton}
+                onPress={() => register()}
+                color="#3897f1">
+                SignUp
+              </Button>
+            </View>
+            <Icon.Button
+              style={{marginLeft: 15, marginRight: 15}}
+              name="facebook"
+              backgroundColor="#3b5998"
+              onPress={() => facebookLogin()}>
+              Login with Facebook
+            </Icon.Button>
             <Button
               buttonStyle={styles.fbAuthButton}
               onPress={() => props.navigation.navigate('ForgotPassword')}
-              title="Forgot Password"
-              color="#3897f1"
-            />
+              color="#3897f1">
+              <Text style={{fontFamily: 'Arial', fontSize: 15}}>
+                Login with Facebook
+              </Text>
+            </Button>
           </View>
         </View>
       </TouchableWithoutFeedback>

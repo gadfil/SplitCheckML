@@ -8,12 +8,21 @@ import {
   Text,
   StatusBar,
   ImageEditor,
+  Button as NButton,
   FlatList,
   TouchableOpacity,
 } from 'react-native';
+import firebase from 'react-native-firebase';
 
-import {List, Paragraph, Dialog, Button, TextInput} from 'react-native-paper';
-
+import {
+  List,
+  Paragraph,
+  Dialog,
+  Button,
+  TextInput,
+  FAB,
+} from 'react-native-paper';
+import {createEvent} from '../api';
 const mock = [
   {title: 'Встреча выпускников', uid: '1', date: '10.06.2019'},
   {title: 'Настолки', uid: '12', date: '10.10.2019'},
@@ -23,6 +32,23 @@ const mock = [
 const History: () => React$Node = props => {
   const [open, changeOpen] = useState(false);
   const [name, setName] = useState('');
+
+  useEffect(() => {
+    const currentUser = firebase.auth().currentUser;
+    console.log(currentUser);
+    if (currentUser?._user.uid) {
+      const ref = firebase
+        .firestore()
+        .collection('events')
+        .doc('Elo5WipOHOkNr5RKxePN');
+
+      ref.onSnapshot(doc => {
+        console.log(doc);
+        console.log(doc.data());
+      });
+    }
+  }, []);
+
   return (
     <View style={styles.container}>
       <FlatList
@@ -36,13 +62,16 @@ const History: () => React$Node = props => {
           />
         )}
       />
-      <TouchableOpacity
-        onPress={() => {
-          changeOpen(true);
+      <FAB
+        style={{
+          position: 'absolute',
+          margin: 16,
+          right: 0,
+          bottom: 0,
         }}
-        style={styles.fab}>
-        <Text style={styles.fabIcon}>+</Text>
-      </TouchableOpacity>
+        icon="add"
+        onPress={() => changeOpen(true)}
+      />
 
       <Dialog
         visible={open}
@@ -60,7 +89,7 @@ const History: () => React$Node = props => {
         </Dialog.Content>
         <Dialog.Actions>
           <Button onPress={() => console.log('Cancel')}>Cancel</Button>
-          <Button onPress={() => console.log('Ok')}>Ok</Button>
+          <Button onPress={() => createEvent(name)}>Ok</Button>
         </Dialog.Actions>
       </Dialog>
     </View>
@@ -69,6 +98,14 @@ const History: () => React$Node = props => {
 
 History.navigationOptions = {
   title: 'История',
+  headerRight: (
+    <TouchableOpacity
+      onPress={() => {
+        firebase.auth().signOut();
+      }}>
+      <Text>выйти</Text>
+    </TouchableOpacity>
+  ),
 };
 const styles = StyleSheet.create({
   container: {

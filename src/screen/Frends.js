@@ -12,8 +12,8 @@ import {
 import {List, Paragraph, Dialog, Button, TextInput} from 'react-native-paper';
 
 const mock = [
-  {title: 'Вася', uid: '1', date: '10.06.2019'},
-  {title: 'Петя', uid: '12', date: '10.10.2019'},
+  {title: 'Вася', uid: '1', spend: 50},
+  {title: 'Петя', uid: '12', spend: 70},
 ];
 const Frends: () => React$Node = () => {
   return (
@@ -25,6 +25,7 @@ const Frends: () => React$Node = () => {
           <List.Item
             onPress={() => {}}
             title={item.title}
+            description={`${item.spend}`}
             left={props => <List.Icon {...props} icon="person" />}
           />
         )}

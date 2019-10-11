@@ -5334,6 +5334,11 @@ react-native-image-crop-picker@^0.25.3:
   resolved "https://registry.yarnpkg.com/react-native-image-crop-picker/-/react-native-image-crop-picker-0.25.3.tgz#46ee28b4a0a187240e388bd28a44cf8c274caec6"
   integrity sha512-jQ416WXEiEQ3w057QOYU++8/mDqYb2A/AGZY/NwR5eKda/z8a4wncWKj7oF9KBAHNKE1TmPrl9Rm0GZ0Jrzp6A==
 
+react-native-image-picker@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-1.1.0.tgz#c2a0523886edb4cf2cdc008ad0a71433142a4d53"
+  integrity sha512-/KjHf4NNAjl6XM7FQuqvGDz1wB9sRdLf86+2yksLW/QTRR7CitX4TLCM8ZF9CX6Y0MsCTndkZia3zWE+nt/GiA==
+
 react-native-image-rotate@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/react-native-image-rotate/-/react-native-image-rotate-2.1.0.tgz#6275a294d9fafb86f7c82f43b26f04d95ede4b1f"
@@ -5381,6 +5386,11 @@ react-native-tab-view@^2.9.0:
   version "2.10.0"
   resolved "https://registry.yarnpkg.com/react-native-tab-view/-/react-native-tab-view-2.10.0.tgz#5e249e5650502010013449ffd4e5edc18a95364b"
   integrity sha512-qgexVz5eO4yaFjdkmn/sURXgVvaBo6pZD/q1eoca96SbPVbaH3WzVhF3bRUfeTHwZkXwznFTpS3JURqIFU8vQA==
+
+react-native-text-detector@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/react-native-text-detector/-/react-native-text-detector-0.0.6.tgz#c33cdcfd574b15cb94ffe4db320e7a22ead12c86"
+  integrity sha512-Etwflm4EU1rOvMiQ8iStaGZkl6qbYyIcApJRWvvpHvkc+NTJ2btM3FAayF829E6FLFWOwjZCBzaRns1LTrQcFw==
 
 react-native-vector-icons@^6.6.0:
   version "6.6.0"

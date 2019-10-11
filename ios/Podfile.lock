@@ -337,6 +337,8 @@ PODS:
   - react-native-fbsdk/Share (1.0.4):
     - FBSDKShareKit (~> 5.5)
     - React
+  - react-native-image-picker (1.1.0):
+    - React
   - React-RCTActionSheet (0.61.2):
     - React-Core/RCTActionSheetHeaders (= 0.61.2)
   - React-RCTAnimation (0.61.2):
@@ -392,9 +394,13 @@ PODS:
     - React
   - RNReanimated (1.3.0):
     - React
+  - RNTextDetector (0.0.6):
+    - React
+    - TesseractOCRiOS (~> 4.0.0)
   - RNVectorIcons (6.6.0):
     - React
   - RSKImageCropper (2.2.3)
+  - TesseractOCRiOS (4.0.0)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -421,6 +427,7 @@ DEPENDENCIES:
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - react-native-fbsdk (from `../node_modules/react-native-fbsdk`)
+  - react-native-image-picker (from `../node_modules/react-native-image-picker`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
   - React-RCTBlob (from `../node_modules/react-native/Libraries/Blob`)
@@ -437,6 +444,7 @@ DEPENDENCIES:
   - RNImageCropPicker (from `../node_modules/react-native-image-crop-picker`)
   - RNImageRotate (from `../node_modules/react-native-image-rotate`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
+  - RNTextDetector (from `../node_modules/react-native-text-detector/ios`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -469,6 +477,7 @@ SPEC REPOS:
     - Protobuf
     - QBImagePickerController
     - RSKImageCropper
+    - TesseractOCRiOS
 
 EXTERNAL SOURCES:
   DoubleConversion:
@@ -501,6 +510,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
   react-native-fbsdk:
     :path: "../node_modules/react-native-fbsdk"
+  react-native-image-picker:
+    :path: "../node_modules/react-native-image-picker"
   React-RCTActionSheet:
     :path: "../node_modules/react-native/Libraries/ActionSheetIOS"
   React-RCTAnimation:
@@ -531,6 +542,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-image-rotate"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
+  RNTextDetector:
+    :path: "../node_modules/react-native-text-detector/ios"
   RNVectorIcons:
     :path: "../node_modules/react-native-vector-icons"
   Yoga:
@@ -578,6 +591,7 @@ SPEC CHECKSUMS:
   React-jsiexecutor: 8909917ff7d8f21a57e443a866fd8d4560e50c65
   React-jsinspector: 111d7d342b07a904c400592e02a2b958f1098b60
   react-native-fbsdk: 45e28bbab3e905cbc635c0bdd3444b372e933ae9
+  react-native-image-picker: 7a85cf7b0a53845f03ae52fb4592a2748ded069b
   React-RCTActionSheet: 89b037c0fb7d2671607cb645760164e7e0c013f6
   React-RCTAnimation: e3cefa93c38c004c318f7ec04b883eb14b8b8235
   React-RCTBlob: d26ac0e313fbf14e7203473fd593ccaaeee8329e
@@ -593,10 +607,12 @@ SPEC CHECKSUMS:
   RNImageCropPicker: bfb3ea9c8622f290532e2fe63f369e0d5a52f597
   RNImageRotate: 61c62c5a907405821e28dc8c0e04e4fdc909b1fa
   RNReanimated: 6abbbae2e5e72609d85aabd92a982a94566885f1
+  RNTextDetector: bcbfed60c7d2a8f455314955a519fae6d5ab921a
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   RSKImageCropper: a446db0e8444a036b34f3c43db01b2373baa4b2a
+  TesseractOCRiOS: 90638afbe43d082433f2e76b384c7901d23956df
   Yoga: 14927e37bd25376d216b150ab2a561773d57911f
 
-PODFILE CHECKSUM: b9d55a866a5e38f097d3c6f22087a61fc6a46ec4
+PODFILE CHECKSUM: b692be5e7b350d689f509ce51e61c671ed3cc289
 
 COCOAPODS: 1.7.5
