@@ -49,7 +49,7 @@ const TabNavigator = createBottomTabNavigator({
   Frends: {
     screen: Frends,
     navigationOptions: {
-      title: '',
+      title: 'Люди',
 
       tabBarIcon: ({tintColor}) => (
         <Icon
@@ -64,7 +64,7 @@ const TabNavigator = createBottomTabNavigator({
   Check: {
     screen: Check,
     navigationOptions: {
-      title: '',
+      title: 'Чек',
       tabBarIcon: ({tintColor}) => (
         <FontAwesome5
           name="receipt"
@@ -78,7 +78,7 @@ const TabNavigator = createBottomTabNavigator({
   Wallet: {
     screen: Check,
     navigationOptions: {
-      title: '',
+      title: 'Счет',
 
       tabBarIcon: ({tintColor}) => (
         <FontAwesome5

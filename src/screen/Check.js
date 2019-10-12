@@ -1,5 +1,5 @@
 // @flow
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   Image,
   Text,
@@ -13,6 +13,7 @@ import ImagePicker from 'react-native-image-picker';
 import AmazingCropper, {DefaultFooter} from 'react-native-amazing-cropper';
 // import MaterialCommunityIcon from 'react-native-vector-icons/MaterialCommunityIcon';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import firestore from '@react-native-firebase/firestore';
 
 const options = {
   title: 'Take check',
@@ -25,6 +26,21 @@ const options = {
 const Check: () => React$Node = props => {
   const [isOpen, setOpen] = useState(false);
   const [imagePath, setImagePath] = useState('');
+  const [uid, setUid] = useState('');
+  useEffect(() => {
+    console.log('Check');
+
+    const uid = props.navigation.getParam('uid', '');
+    setUid(uid);
+    console.log('uid', uid);
+    firestore()
+      .collection('events')
+      .doc(uid)
+      .onSnapshot(doc => {
+        console.log(doc);
+        console.log(doc.data());
+      });
+  }, []);
   return (
     <View style={{flex: 1, backgroundColor: '#ffdfdf'}}>
       <FAB
@@ -55,6 +71,7 @@ const Check: () => React$Node = props => {
               setImagePath(response.uri);
               props.navigation.navigate('CropScreen', {
                 imageUri: response.uri,
+                eventUid: uid,
               });
             }
           })

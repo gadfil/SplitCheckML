@@ -45,4 +45,37 @@ export const createEvent = async title => {
     console.log(err);
   }
 };
+/**
+ * add friend to event
+ * @param uid event
+ * @param friends array of friend
+ * @param name friend's name
+ * @returns {Promise<void>}
+ */
+export const addFriendToEvent = async ({uid, friends, name}) => {
+  try {
+    const ref = firestore()
+      .collection(`events`)
+      .doc(uid);
+    await ref.set(
+      {
+        friends: [...friends, {name, spend: 0, uid: new Date().getTime()}],
+      },
+      {merge: true},
+    );
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const uploadImage = async ({imageBase64, eventUid}) => {
+  try {
+    await firestore()
+      .collection('images')
+      .doc(eventUid)
+      .add({imageBase64});
+  } catch (err) {
+    console.log(err);
+  }
+};
 // export const saveFcmToken = ()

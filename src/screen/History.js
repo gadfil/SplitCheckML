@@ -1,29 +1,11 @@
 // @flow
 import React, {useEffect, useState} from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-  ImageEditor,
-  Button as NButton,
-  FlatList,
-  TouchableOpacity,
-} from 'react-native';
+import {FlatList, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 // import firebase from 'react-native-firebase';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 
-import {
-  List,
-  Paragraph,
-  Dialog,
-  Button,
-  TextInput,
-  FAB,
-} from 'react-native-paper';
+import {Button, Dialog, FAB, List, TextInput} from 'react-native-paper';
 import {createEvent} from '../api';
 import moment from 'moment';
 
@@ -33,7 +15,6 @@ const History: () => React$Node = props => {
   const [history, setHistory] = useState([]);
   useEffect(() => {
     const currentUser = auth().currentUser;
-    console.log(currentUser);
     if (currentUser?._user.uid) {
       firestore()
         .collection('events')
@@ -41,12 +22,11 @@ const History: () => React$Node = props => {
         .onSnapshot(doc => {
           console.log(doc);
           console.log(doc.docs.map(d => d.data()));
-          setHistory(
-            doc.docs.map(d => {
-              return {uid: d.id, ...d.data()};
-            }),
-          );
-          // console.log(doc.data());
+          const events = doc.docs.map(d => {
+            return {uid: d.id, ...d.data()};
+          });
+          console.log('events', events);
+          setHistory(events);
         });
     }
   }, []);
@@ -58,7 +38,9 @@ const History: () => React$Node = props => {
         keyExtractor={item => item.uid}
         renderItem={({item}) => (
           <List.Item
-            onPress={() => props.navigation.navigate('Check')}
+            onPress={() =>
+              props.navigation.navigate('Check', {event: item, uid: item?.uid})
+            }
             title={item.title}
             description={`${moment(item?.date?.toDate()).format('DD.MM.YYYY')}`}
           />
@@ -72,7 +54,10 @@ const History: () => React$Node = props => {
           bottom: 0,
         }}
         icon="add"
-        onPress={() => changeOpen(true)}
+        onPress={() => {
+          changeOpen(true);
+          setName(`Чек ${moment(new Date()).format('DD.MM.YYYY')}`);
+        }}
       />
 
       <Dialog
@@ -85,13 +70,20 @@ const History: () => React$Node = props => {
         <Dialog.Content>
           <TextInput
             label={'Чек'}
+            value={name}
             onChangeText={text => setName(text)}
             mode={'outlined'}
           />
         </Dialog.Content>
         <Dialog.Actions>
-          <Button onPress={() => console.log('Cancel')}>Cancel</Button>
-          <Button onPress={() => createEvent(name)}>Ok</Button>
+          <Button onPress={() => changeOpen(false)}>Cancel</Button>
+          <Button
+            onPress={async () => {
+              await createEvent(name);
+              changeOpen(false);
+            }}>
+            Ok
+          </Button>
         </Dialog.Actions>
       </Dialog>
     </View>
