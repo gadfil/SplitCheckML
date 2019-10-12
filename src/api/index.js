@@ -1,11 +1,13 @@
 // @flow
 
-import firebase from 'react-native-firebase';
+// import firebase from 'react-native-firebase';
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 export const upsert = (ref, value) => {
   console.log('upsert', ref, value);
-  firebase
-    .firestore()
+
+  firestore()
     .runTransaction(async transaction => {
       const doc = await transaction.get(ref);
 
@@ -28,16 +30,17 @@ export const upsert = (ref, value) => {
 
 export const createEvent = async title => {
   try {
-    const uid = firebase.auth().currentUser?._user?.uid;
-    const ref = firebase
-      .firestore()
-      .collection('events')
-      .doc(uid);
-    await ref.add({
+    const uid = auth().currentUser?._user?.uid;
+    const ref = await firestore().collection(`events`);
+    console.log('ref:', ref);
+    const result = await ref.add({
       userUid: uid,
       title,
-      date: firebase.firestore.FieldValue.serverTimestamp(),
+      friends: [],
+      date: firestore.FieldValue.serverTimestamp(),
     });
+    console.log(result);
+    return result;
   } catch (err) {
     console.log(err);
   }

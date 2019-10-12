@@ -14,7 +14,7 @@ import {
   Image,
   Dimensions,
 } from 'react-native';
-import firebase from 'react-native-firebase';
+// import firebase from 'react-native-firebase';
 import {upsert} from '../api';
 import ImagePicker from 'react-native-image-crop-picker';
 import AmazingCropper, {DefaultFooter} from 'react-native-amazing-cropper';

@@ -11,7 +11,9 @@ import {
 } from 'react-native';
 import styles from './style';
 
-import firebase from 'react-native-firebase';
+// import firebase from 'react-native-firebase';
+import auth from '@react-native-firebase/auth';
+
 import {validateEmail} from '../../util';
 import {AccessToken, LoginManager} from 'react-native-fbsdk';
 import {Button} from 'react-native-paper';
@@ -23,9 +25,7 @@ const SignIn: () => React$Node = props => {
 
   const login = async () => {
     try {
-      const response = await firebase
-        .auth()
-        .signInWithEmailAndPassword(email, password);
+      const response = await auth().signInWithEmailAndPassword(email, password);
     } catch (err) {
       Alert.alert(err.message);
     }
@@ -33,9 +33,10 @@ const SignIn: () => React$Node = props => {
 
   const register = async () => {
     try {
-      const response = await firebase
-        .auth()
-        .createUserWithEmailAndPassword(email, password);
+      const response = await auth().createUserWithEmailAndPassword(
+        email,
+        password,
+      );
     } catch (err) {
       Alert.alert(err.message);
     }
@@ -67,15 +68,13 @@ const SignIn: () => React$Node = props => {
       }
 
       // create a new firebase credential with the token
-      const credential = firebase.auth.FacebookAuthProvider.credential(
-        data.accessToken,
-      );
+      const credential = auth.FacebookAuthProvider.credential(data.accessToken);
       console.log('credential', credential);
 
       // login with credential
-      const firebaseUserCredential = await firebase
-        .auth()
-        .signInWithCredential(credential);
+      const firebaseUserCredential = await auth().signInWithCredential(
+        credential,
+      );
 
       console.warn(JSON.stringify(firebaseUserCredential.user.toJSON()));
     } catch (err) {

@@ -10,7 +10,9 @@ import {
 } from 'react-native';
 import styles from './style';
 
-import firebase from 'react-native-firebase';
+// import firebase from 'react-native-firebase';
+import auth from '@react-native-firebase/auth';
+
 import {validateEmail} from '../../util';
 import {Button} from 'react-native-paper';
 
@@ -20,7 +22,7 @@ const ForgotPassword: () => React$Node = props => {
   const forget = async () => {
     try {
       setFetch(true);
-      const response = await firebase.auth().sendPasswordResetEmail(email);
+      const response = await auth().sendPasswordResetEmail(email);
       setFetch(false);
 
       Alert.alert('Please check your email');

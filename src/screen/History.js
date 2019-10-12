@@ -12,7 +12,9 @@ import {
   FlatList,
   TouchableOpacity,
 } from 'react-native';
-import firebase from 'react-native-firebase';
+// import firebase from 'react-native-firebase';
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 import {
   List,
@@ -23,42 +25,42 @@ import {
   FAB,
 } from 'react-native-paper';
 import {createEvent} from '../api';
-const mock = [
-  {title: 'Встреча выпускников', uid: '1', date: '10.06.2019'},
-  {title: 'Настолки', uid: '12', date: '10.10.2019'},
-  {title: 'Пятница', uid: '12', date: '13.10.2019'},
-  {title: 'Настолки', uid: '13', date: '10.03.2019'},
-];
+import moment from 'moment';
+
 const History: () => React$Node = props => {
   const [open, changeOpen] = useState(false);
   const [name, setName] = useState('');
-
+  const [history, setHistory] = useState([]);
   useEffect(() => {
-    const currentUser = firebase.auth().currentUser;
+    const currentUser = auth().currentUser;
     console.log(currentUser);
     if (currentUser?._user.uid) {
-      const ref = firebase
-        .firestore()
+      firestore()
         .collection('events')
-        .doc('Elo5WipOHOkNr5RKxePN');
-
-      ref.onSnapshot(doc => {
-        console.log(doc);
-        console.log(doc.data());
-      });
+        .where('userUid', '==', currentUser?._user.uid)
+        .onSnapshot(doc => {
+          console.log(doc);
+          console.log(doc.docs.map(d => d.data()));
+          setHistory(
+            doc.docs.map(d => {
+              return {uid: d.id, ...d.data()};
+            }),
+          );
+          // console.log(doc.data());
+        });
     }
   }, []);
 
   return (
     <View style={styles.container}>
       <FlatList
-        data={mock}
+        data={history}
         keyExtractor={item => item.uid}
         renderItem={({item}) => (
           <List.Item
             onPress={() => props.navigation.navigate('Check')}
             title={item.title}
-            description={item.date}
+            description={`${moment(item?.date?.toDate()).format('DD.MM.YYYY')}`}
           />
         )}
       />
@@ -99,10 +101,7 @@ const History: () => React$Node = props => {
 History.navigationOptions = {
   title: 'История',
   headerRight: (
-    <TouchableOpacity
-      onPress={() => {
-        firebase.auth().signOut();
-      }}>
+    <TouchableOpacity onPress={() => auth().signOut()}>
       <Text>выйти</Text>
     </TouchableOpacity>
   ),
