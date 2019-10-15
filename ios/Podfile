@@ -49,12 +49,19 @@ target 'SplitCheckML' do
   pod 'RNFBApp', :path => '../node_modules/@react-native-firebase/app'
   pod 'RNFBAuth', :path => '../node_modules/@react-native-firebase/auth'
   pod 'RNFBFirestore', :path => '../node_modules/@react-native-firebase/firestore'
+  pod 'RNFBMLVision', :path => '../node_modules/@react-native-firebase/ml-vision'
+    pod 'react-native-image-resizer', :path => '../node_modules/react-native-image-resizer'
 
 
 #  pod 'RNFirebase', :path => '../node_modules/react-native-firebase/ios'
 
   pod 'RNImageRotate', :path => '../node_modules/react-native-image-rotate'
 
+  pod 'react-native-image-editor', :path => '../node_modules/@react-native-community/image-editor'
+
+  pod 'react-native-camera', path: '../node_modules/react-native-camera', subspecs: [
+  'TextDetector'
+  ]
   target 'SplitCheckMLTests' do
     inherit! :search_paths
     # Pods for testing

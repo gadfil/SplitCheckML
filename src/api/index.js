@@ -68,14 +68,33 @@ export const addFriendToEvent = async ({uid, friends, name}) => {
   }
 };
 
-export const uploadImage = async ({imageBase64, eventUid}) => {
+export const addCheckToEvent = async ({uid, check}) => {
   try {
-    await firestore()
-      .collection('images')
-      .doc(eventUid)
-      .add({imageBase64});
+    const ref = firestore()
+      .collection(`events`)
+      .doc(uid);
+    await ref.set(
+      {
+        check: [...check],
+      },
+      {merge: true},
+    );
   } catch (err) {
     console.log(err);
+  }
+};
+
+export const uploadImage = async ({imageBase64, eventUid}) => {
+  try {
+    console.log('uploadImage');
+    console.log(eventUid);
+    console.log(imageBase64);
+    const ref = firestore()
+      .collection('images')
+      .doc(eventUid);
+    await ref.set({image: imageBase64});
+  } catch (err) {
+    console.log('uploadImage:err', err);
   }
 };
 // export const saveFcmToken = ()

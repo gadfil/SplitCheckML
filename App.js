@@ -23,6 +23,15 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import {Provider as PaperProvider} from 'react-native-paper';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import CropScreen from './src/screen/CropScreen';
+import Pocket from './src/screen/Pocket.js';
+import firestore from '@react-native-firebase/firestore';
+
+async function bootstrap() {
+  await firestore().settings({
+    cacheSizeBytes: firestore.CACHE_SIZE_UNLIMITED, // unlimited cache size
+  });
+}
+bootstrap();
 
 Icon.loadFont('AntDesign.ttf');
 Icon.loadFont('Entypo.ttf');
@@ -76,7 +85,7 @@ const TabNavigator = createBottomTabNavigator({
     },
   },
   Wallet: {
-    screen: Check,
+    screen: Pocket,
     navigationOptions: {
       title: 'Счет',
 

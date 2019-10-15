@@ -934,6 +934,11 @@
     eslint-plugin-react-native "3.6.0"
     prettier "1.16.4"
 
+"@react-native-community/image-editor@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@react-native-community/image-editor/-/image-editor-2.0.2.tgz#e9850cf6f64ec258d8a6e4ff93a0547c592a602f"
+  integrity sha512-KxbtZLxWwoaCdjplBsB0gpZsMUg1ajHeh0hMrvMCSCOHPVT56MqlTDETZ5x+GQZkVJcpy7XPGMUqM5qVOPRayg==
+
 "@react-native-firebase/app-types@6.0.1":
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/@react-native-firebase/app-types/-/app-types-6.0.1.tgz#567713ee3997eb1d5aa80e535af96b0314655809"
@@ -962,6 +967,11 @@
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/@react-native-firebase/messaging/-/messaging-6.0.1.tgz#829ac449adab71249f20fdde7ddd7a7a5b6e457c"
   integrity sha512-gXoZ+OjvKb64nFBmDR0Md5UIalWxQ0M0BwSlB5GCTKvzvDRMwNwgRzz43IDfKeHwisM+liAKlhBIBsk/IrNY5w==
+
+"@react-native-firebase/ml-vision@^6.0.1":
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/@react-native-firebase/ml-vision/-/ml-vision-6.0.1.tgz#d511eef738829b2e105e7dbabfa3f064484c54ca"
+  integrity sha512-sS1GijB8hjmjo1IkqRC/9d+cKw61zdASP17iB5O3q8EjD3/BvC/XzQ46adubWD0YExcP1fanf/qufpkEFeKANw==
 
 "@react-navigation/core@^3.5.1":
   version "3.5.1"
@@ -5370,6 +5380,13 @@ react-native-amazing-cropper@^0.0.9:
   dependencies:
     prop-types "^15.6.2"
 
+react-native-camera@^3.7.1:
+  version "3.7.1"
+  resolved "https://registry.yarnpkg.com/react-native-camera/-/react-native-camera-3.7.1.tgz#8429fd7d237a2c71d067508d435b790014fc2450"
+  integrity sha512-+xyWmq0/jGomkctSnmJXZwWy7mHCCfj2NUsrDOnbbpZaOaQG9a646NZzBabxQQfBy38ZyfQm5Q4nxh3AEddfrQ==
+  dependencies:
+    prop-types "^15.6.2"
+
 react-native-fbsdk@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/react-native-fbsdk/-/react-native-fbsdk-1.0.4.tgz#ecc0faf235e12de4423af9908f56b999cf144422"
@@ -5394,6 +5411,11 @@ react-native-image-picker@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-1.1.0.tgz#c2a0523886edb4cf2cdc008ad0a71433142a4d53"
   integrity sha512-/KjHf4NNAjl6XM7FQuqvGDz1wB9sRdLf86+2yksLW/QTRR7CitX4TLCM8ZF9CX6Y0MsCTndkZia3zWE+nt/GiA==
+
+react-native-image-resizer@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-native-image-resizer/-/react-native-image-resizer-1.0.1.tgz#e9eeb7f81596ffc490f822897952b046c07ee95c"
+  integrity sha512-upBF/9TIs4twg19dSkSaDW/MzMpNbysEXtPuapu3GqvOuGIYHKQ30v6httDn7rIb6uCcNIWL1BwZJM2cDt/C9Q==
 
 react-native-image-rotate@^2.1.0:
   version "2.1.0"

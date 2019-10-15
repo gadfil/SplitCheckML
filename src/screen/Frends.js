@@ -5,6 +5,7 @@ import {Button, Dialog, FAB, List, TextInput} from 'react-native-paper';
 import firestore from '@react-native-firebase/firestore';
 import {addFriendToEvent} from '../api';
 import moment from 'moment';
+import ImageEditor from '@react-native-community/image-editor';
 
 const Frends: () => React$Node = props => {
   const [event, setEvent] = useState({});
@@ -14,6 +15,7 @@ const Frends: () => React$Node = props => {
 
   useEffect(() => {
     console.log('F');
+    console.log('ImageEditor', ImageEditor);
 
     const uid = props.navigation.getParam('uid', '');
     const event = props.navigation.getParam('event', '');
